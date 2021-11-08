@@ -77,7 +77,6 @@ jobs:
       
       - name: Test with Percy on Browserstack
          
-        uses: ./
         with:
           command: " percy storybook ./storybook-static"
        
