@@ -51,15 +51,15 @@ jobs:
 
       - name: Install percy stroybook
 
-        run: npm install @percy/storybook
+        run: npm install -g @percy/storybook
 
       - name: Install percy 
 
-        run: npm install @percy/cli 
+        run: npm install -g @percy/cli 
         
       - name: Install Yarn
 
-        run: npm install yarn 
+        run: npm install -g yarn 
         
 
       - name: Install project dependencies
@@ -76,9 +76,10 @@ jobs:
         
       
       - name: Test with Percy on Browserstack
-         
-        with:
-          command: " percy storybook ./storybook-static"
+      
+        run: percy storybook ./storybook-static
+       
+  
        
 
         env:
