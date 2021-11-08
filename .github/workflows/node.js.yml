@@ -49,11 +49,18 @@ jobs:
 
  
 
-      - name: Install Yarn, percy and percy stroybook
+      - name: Install percy stroybook
 
-        run: npm install -g yarn @percy/cli @percy/storybook
+        run: npm install @percy/storybook
 
- 
+      - name: Install percy 
+
+        run: npm install @percy/cli 
+        
+      - name: Install Yarn
+
+        run: npm install yarn 
+        
 
       - name: Install project dependencies
 
