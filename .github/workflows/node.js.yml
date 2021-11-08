@@ -1,0 +1,89 @@
+name: Visual regression testing with Percy on Browserstack
+
+ 
+
+
+on: [push, pull_request]
+
+jobs:
+
+  # This workflow contains a single job called "build"
+
+  test-with-percy:
+
+    timeout-minutes: 15
+
+    # The type of runner that the job will run on
+
+    runs-on: [ubuntu-latest]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+
+    steps:
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+
+      - name: Checkout code
+
+        uses: actions/checkout@v2
+
+     
+
+      - run: git fetch --unshallow
+
+ 
+
+      - name: Read node version from nvm file
+
+        uses: nodenv/actions/node-version@main
+        
+        id: nvmrc
+
+ 
+
+      - name: Setup Node.js
+
+        uses: actions/setup-node@v1
+
+        with:
+
+          node-version: '${{ steps.nvmrc.outputs.node_version }}'
+
+ 
+
+      - name: Install Yarn, percy and percy stroybook
+
+        run: npm install -g yarn @percy/cli @percy/storybook
+
+ 
+
+      - name: Install project dependencies
+
+        run: yarn install 
+     
+
+      - name: Build packages
+
+        run: yarn build storybook
+        
+
+     
+        
+
+      - name: Test with Percy on Browserstack
+
+        run: percy storybook ./storybook-static
+
+        env:
+
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+
+     
+
+      - name: Uninstall Yarn
+
+        if: always()
+
+        run: npm uninstall -g yarn
