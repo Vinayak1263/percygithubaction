@@ -74,10 +74,13 @@ jobs:
 
      
         
-
+      
       - name: Test with Percy on Browserstack
-
-        run: percy storybook ./storybook-static
+         
+        uses: ./
+        with:
+          command: " percy storybook ./storybook-static"
+       
 
         env:
 
