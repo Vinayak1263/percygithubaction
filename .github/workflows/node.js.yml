@@ -35,11 +35,7 @@ jobs:
 
  
 
-      - name: Read node version from nvm file
 
-        uses: nodenv/actions/node-version@main
-        
-        id: nvmrc
 
  
 
@@ -49,7 +45,7 @@ jobs:
 
         with:
 
-          node-version: '${{ steps.nvmrc.outputs.node_version }}'
+          node-version: '16'
 
  
 
