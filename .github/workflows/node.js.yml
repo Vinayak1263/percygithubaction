@@ -77,7 +77,7 @@ jobs:
       
       - name: Test with Percy on Browserstack
       
-        run: percy storybook ./packages/components/storybook-static
+        run: percy storybook ./build
        
   
        
